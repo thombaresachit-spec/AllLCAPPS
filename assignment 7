@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+#define MAX 100
+
+struct Student {
+    int roll_no;
+    char name[50];
+    float marks[3];
+    float total;
+    float percentage;
+};
+
+int main() {
+    struct Student s[MAX];
+    int n, i, j;
+
+    printf("Enter the number of students: ");
+    scanf("%d", &n);
+
+    for (i = 0; i < n; i++) {
+        printf("\nEnter the roll number, name and marks of 3 subjects:\n");
+        scanf("%d %s %f %f %f",
+              &s[i].roll_no,
+              s[i].name,
+              &s[i].marks[0],
+              &s[i].marks[1],
+              &s[i].marks[2]);
+
+        s[i].total = 0;
+        for (j = 0; j < 3; j++) {
+            s[i].total += s[i].marks[j];
+        }
+        s[i].percentage = s[i].total / 3.0f;
+    }
+
+    printf("\nRoll No\tName\tSubject: 1\tSubject: 2\tSubject: 3\tTotal\tPercentage\n");
+    for (i = 0; i < n; i++) {
+        printf("%d\t%s\t%.0f\t\t%.0f\t\t%.0f\t\t%.0f\t%.2f\n",
+               s[i].roll_no,
+               s[i].name,
+               s[i].marks[0],
+               s[i].marks[1],
+               s[i].marks[2],
+               s[i].total,
+               s[i].percentage);
+    }
+
+    return 0;
+}
